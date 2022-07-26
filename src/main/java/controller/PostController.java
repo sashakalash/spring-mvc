@@ -1,5 +1,6 @@
 package controller;
 
+import exception.NotFoundException;
 import model.Post;
 import service.PostService;
 import org.springframework.web.bind.annotation.*;
