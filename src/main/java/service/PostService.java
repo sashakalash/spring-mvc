@@ -5,6 +5,7 @@ import model.Post;
 import repository.PostRepository;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 public class PostService {
     private final PostRepository repository;
@@ -17,19 +18,19 @@ public class PostService {
         return repository.all();
     }
 
-    public Post getById(long id) {
+    public Post getById(AtomicLong id) {
         return repository.getById(id).orElseThrow(NotFoundException::new);
     }
 
     public Post save(Post post) {
-        if (post.getId() == 0) {
+        if (post.getId().intValue() == 0) {
             return repository.add(post);
         } else {
             return repository.save(post).orElseThrow(NotFoundException::new);
         }
     }
 
-    public Post removeById(long id) {
+    public Post removeById(AtomicLong id) {
         return repository.removeById(id).orElseThrow(NotFoundException::new);
     }
 }

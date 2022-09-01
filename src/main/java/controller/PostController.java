@@ -4,6 +4,7 @@ import model.Post;
 import service.PostService;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 @RequestMapping("/api/posts")
@@ -20,7 +21,7 @@ public class PostController {
     }
 
     @GetMapping("/{id}")
-    public Post getById(@PathVariable long id) {
+    public Post getById(@PathVariable AtomicLong id) {
         return service.getById(id);
     }
 
@@ -35,7 +36,7 @@ public class PostController {
     }
 
     @DeleteMapping("/{id}")
-    public void removeById(long id) {
+    public void removeById(AtomicLong id) {
         service.removeById(id);
     }
 }
